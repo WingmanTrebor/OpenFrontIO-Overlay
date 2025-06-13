@@ -4,7 +4,6 @@
   "version": "0.1",
   "description": "Adds an overlay to the OpenFrontIO game UI.",
   "action": {
-    "default_popup": "popup.html",
     "default_title": "OpenFrontIO Overlay"
   },
   "content_scripts": [
@@ -12,6 +11,12 @@
       "matches": ["https://openfront.io/*", "http://openfront.io/*"],
       "js": ["contentScript.js"],
       "css": ["styles.css"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["overlay.html"],
+      "matches": ["<all_urls>"]
     }
   ]
 }
