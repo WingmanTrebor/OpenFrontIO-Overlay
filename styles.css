@@ -1,0 +1,18 @@
+#ofio-overlay {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 10px;
+  font-family: Arial, sans-serif;
+  z-index: 10000;
+  border-radius: 4px;
+}
+#ofio-overlay button {
+  margin-top: 10px;
+  width: 100%;
+}
+#ofio-overlay p {
+  margin: 5px 0;
+}
