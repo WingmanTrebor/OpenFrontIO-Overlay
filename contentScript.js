@@ -4,17 +4,13 @@
 
   const overlay = document.createElement('div');
   overlay.id = 'ofio-overlay';
-  overlay.innerHTML = `
-    <div id="ofio-metrics">
-      <p>Health: <span id="overlay-health">--</span></p>
-      <p>Score: <span id="overlay-score">--</span></p>
-      <p>Level: <span id="overlay-level">--</span></p>
-    </div>
-    <button id="overlay-retrieve">Retrieve Game State</button>
-  `;
+  document.body.appendChild(overlay);
+  fetch(chrome.runtime.getURL('overlay.html'))
+    .then((response) => response.text())
+    .then((data) => {
+      document.getElementById('ofio-overlay').innerHTML = data;
+    });
 
-  const gameRoot = document.querySelector('#game-container') || document.body;
-  gameRoot.appendChild(overlay);
 
   document.getElementById('overlay-retrieve').addEventListener('click', () => {
     // Placeholder for retrieving game state
