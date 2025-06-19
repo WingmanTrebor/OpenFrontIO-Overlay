@@ -1,6 +1,6 @@
 # OpenFrontIO Overlay Chrome Extension
 
-This extension injects a small overlay into the OpenFrontIO game page. The overlay currently displays placeholder metrics and a button to retrieve game state. Future versions will hook this up to the actual game state.
+This extension injects a small overlay into the OpenFrontIO game page. The overlay currently displays placeholder metrics and a button to retrieve game state. Metrics are sent from the DevTools page through a background service worker before reaching the content script. Future versions will hook this up to the actual game state.
 
 ## Development
 

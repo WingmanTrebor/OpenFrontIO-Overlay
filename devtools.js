@@ -45,7 +45,8 @@ function sendMetrics() {
       chrome.runtime.sendMessage({
         type: 'metrics-update',
         pop: result.pop,
-        gold: result.gold
+        gold: result.gold,
+        tabId: chrome.devtools.inspectedWindow.tabId
       });
     }
   });
