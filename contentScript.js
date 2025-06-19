@@ -1,5 +1,6 @@
 (function() {
   if (document.getElementById('ofio-overlay')) return; // Don't inject twice
+  let overlayEl;
 
   // Fetch the HTML
   fetch(chrome.runtime.getURL('overlay.html'))
@@ -7,6 +8,7 @@
     .then(html => {
       const overlay = document.createElement('div');
       overlay.id = 'ofio-overlay';
+      overlayEl = overlay;
       overlay.style = `
         position: fixed;
         left: 40%;
@@ -44,7 +46,16 @@
         });
       });
 
-      
+
     });
+
+  chrome.runtime.onMessage.addListener((msg) => {
+    if (msg.type === 'metrics-update' && overlayEl) {
+      const popSpan = overlayEl.querySelector('#overlay-pop');
+      const goldSpan = overlayEl.querySelector('#overlay-gold');
+      if (popSpan) popSpan.textContent = msg.pop;
+      if (goldSpan) goldSpan.textContent = msg.gold;
+    }
+  });
 
 })();
