@@ -18,5 +18,6 @@
       "resources": ["overlay.html"],
       "matches": ["<all_urls>"]
     }
-  ]
+  ],
+  "devtools_page": "devtools.html"
 }

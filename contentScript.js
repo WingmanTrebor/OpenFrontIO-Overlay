@@ -23,28 +23,10 @@
 
       document.body.appendChild(overlay);
 
-      // Add event listeners after injection
+      // Add event listener after injection
       overlay.querySelector('#overlay-retrieve')?.addEventListener('click', () => {
-        console.log('Retrieve Game State from overlay');
-        const emojiTable = document.querySelector('emoji-table');
-        console.log('emojiTable:', emojiTable);
-
-        // Defensive: check for existence and property
-        if (emojiTable) {
-          // Log all property keys (to see if game is there)
-          console.log('emojiTable keys:', Object.keys(emojiTable));
-          // Try logging game property directly
-          console.log('emojiTable.game:', emojiTable.game);
-
-          window.game = emojiTable.game;
-          if (window.game) {
-            console.log('Game object:', window.game);
-          } else {
-            console.log('Could not find game object on <emoji-table>');
-          }
-        } else {
-          console.log('Could not find <emoji-table> element.');
-        }
+        // Ask the devtools page to try retrieving the game object
+        chrome.runtime.sendMessage({ type: 'retrieve-game' });
       });
 
 
