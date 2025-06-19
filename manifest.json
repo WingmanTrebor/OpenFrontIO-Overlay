@@ -19,5 +19,8 @@
       "matches": ["<all_urls>"]
     }
   ],
+  "background": {
+    "service_worker": "background.js"
+  },
   "devtools_page": "devtools.html"
 }
