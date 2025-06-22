@@ -28,12 +28,25 @@
 <div id="ofio-overlay-content">
     <!-- METRICS TAB CONTENT -->
   <div id="tab-metrics" class="ofio-tab-content">
-    <div id="ofio-overlay-metrics" class="flex w-full z-100 gap-2">
-      <p>Pop: <span id="overlay-pop">--</span></p>
-      <p>Pop Rate: <span id="overlay-poprate">--</span></p>
-      <p>Gold: <span id="overlay-gold">--</span></p>
+    <div id="ofio-overlay-metrics"
+         style="display: grid; grid-template-columns: max-content 1fr; row-gap: 2px; column-gap: 8px; font-size: 0.75em; align-items: center;">
+      <span>Pop:</span>
+      <span id="overlay-pop">--</span>
+      <span>Troops:</span>
+      <span id="overlay-troops">--</span>
+      <span>Workers:</span>
+      <span id="overlay-workers">--</span>
+      <span>Cap:</span>
+      <span id="overlay-cap">--</span>
+      <span>Gold:</span>
+      <span id="overlay-gold">--</span>
+      <span>Tiles:</span>
+      <span id="overlay-tiles">--</span>
+      <span>Tick:</span>
+      <span id="overlay-tick">--</span>
     </div>
   </div>
+</div>
     <!-- ACTIONS TAB CONTENT -->
   <div id="tab-actions" class="ofio-tab-content" style="display: none;">
     <button id="overlay-retrieve" class="flex items-center justify-center p-1
@@ -42,5 +55,11 @@
       hover:bg-opacity-60 hover:bg-gray-600
       transition-colors duration-200
       text-sm">Retrieve Game State</button>
+    <button id="overlay-attack-free-land" class="flex items-center justify-center p-1
+      bg-opacity-70 bg-gray-700 text-opacity-90 text-white
+      border-none rounded cursor-pointer
+      hover:bg-opacity-60 hover:bg-gray-600
+      transition-colors duration-200
+      text-sm">Attack Free Land</button>
   </div>
 </div>

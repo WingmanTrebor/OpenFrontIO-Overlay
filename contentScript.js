@@ -25,10 +25,16 @@
 
       document.body.appendChild(overlay);
 
-      // Add event listener after injection
+      // Add event listeners after injection
       overlay.querySelector('#overlay-retrieve')?.addEventListener('click', () => {
-        // Ask the devtools page to try retrieving the game object
+        // Ask devtools to try retrieving the game object
         chrome.runtime.sendMessage({ type: 'retrieve-game' });
+        console.log("BUTTON: retrieving game state");
+      });
+      overlay.querySelector('#overlay-attack-free-land')?.addEventListener('click', () => {
+        // Ask devtools to send an attack with a null target
+        chrome.runtime.sendMessage({ type: 'attack-free-land', targetID: null, troops: null });
+        console.log("BUTTON: sending free land attack");
       });
 
 
@@ -52,9 +58,19 @@
   chrome.runtime.onMessage.addListener((msg) => {
     if (msg.type === 'metrics-update' && overlayEl) {
       const popSpan = overlayEl.querySelector('#overlay-pop');
+      const troopsSpan = overlayEl.querySelector('#overlay-troops');
+      const workersSpan = overlayEl.querySelector('#overlay-workers');
+      const capSpan = overlayEl.querySelector('#overlay-cap');
       const goldSpan = overlayEl.querySelector('#overlay-gold');
-      if (popSpan) popSpan.textContent = msg.pop;
-      if (goldSpan) goldSpan.textContent = msg.gold;
+      const tilesSpan = overlayEl.querySelector('#overlay-tiles');
+      const tickSpan = overlayEl.querySelector('#overlay-tick');
+      if (popSpan) { popSpan.textContent = msg.pop; }
+      if (troopsSpan) { troopsSpan.textContent = msg.troops; }
+      if (workersSpan) { workersSpan.textContent = msg.workers; }
+      if (capSpan) { capSpan.textContent = msg.cap; }
+      if (goldSpan) { goldSpan.textContent = msg.gold; }
+      if (tilesSpan) { tilesSpan.textContent = msg.tiles; }
+      if (tickSpan) { tickSpan.textContent = msg.tick; }
     }
   });
 

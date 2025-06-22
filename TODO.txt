@@ -1,0 +1,37 @@
+
+OVERLAY / UI:
+
+[ ] re-style Metrics tab into denser view
+[ ] add some kind of "hide" functionality that gets the overlay out of the player's way
+[ ] 
+
+
+GAME STATE ACCESS:
+
+[ ] attempt to retrieve game state automatically
+[ ] retrieve key input values for model:
+    [x] troop count
+    [ ] troop increase rate (or maybe % of current troops)
+    [ ] troop % of max cap ?
+    [x] tiles
+    [ ] current tick
+[ ] 
+
+
+ACTION ACCESS:
+
+[ ] Spawn
+    [ ] add Spawn button to overlay
+    [ ] calculate best spawn location
+[ ] Attack
+    [x] send attack to free land
+    [x] control with attack ratio or by specifying exact number of troops to send
+    [ ] 
+[ ] 
+
+
+RESULT ACCESS:
+
+[ ] 
+[ ] 
+[ ] 
