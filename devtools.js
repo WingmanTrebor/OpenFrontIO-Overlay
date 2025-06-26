@@ -11,7 +11,7 @@ function tryGetGame() {
       window.controlPanel = controlPanel;
       window.game = controlPanel.game;
       window.bus = controlPanel.eventBus;
-      window.playerActions = window.playerActions || {}
+      window.playerActions = window.playerActions || {};
       return true;
     }
     return false;
@@ -37,7 +37,7 @@ function startRetrieval() {
 function sendMetrics() {
   const code = `(() => {
     try {
-      const player = window.game._myPlayer
+      const player = window.game._myPlayer;
 
       const pop = player.population().toString();
       const troops = player.troops().toString();
