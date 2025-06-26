@@ -1,25 +1,25 @@
 (function() {
   if (document.getElementById('ofio-overlay')) return; // Don't inject twice
-  let overlayEl;
+  let overlay;
+  // Cached metric span elements
+  let popSpan, troopsSpan, workersSpan, capSpan, goldSpan, tilesSpan, tickSpan;
 
   // Fetch the HTML
   fetch(chrome.runtime.getURL('overlay.html'))
     .then(res => res.text())
     .then(html => {
-      const overlay = document.createElement('div');
+      overlay = document.createElement('div');
       overlay.id = 'ofio-overlay';
-      overlayEl = overlay;
-      overlay.style = `
-        position: fixed;
-        left: 40%;
-        top: 10px;
-        z-index: 100;
-        background: rgba(17, 24, 39, 0.6);
-        padding: 0.5rem;
-        border-radius: 0.5rem;
-        backdrop-filter: blur(12px);
-      `;
       overlay.innerHTML = html;
+
+      // Metric span references
+      popSpan = overlay.querySelector('#overlay-pop');
+      troopsSpan = overlay.querySelector('#overlay-troops');
+      workersSpan = overlay.querySelector('#overlay-workers');
+      capSpan = overlay.querySelector('#overlay-cap');
+      goldSpan = overlay.querySelector('#overlay-gold');
+      tilesSpan = overlay.querySelector('#overlay-tiles');
+      tickSpan = overlay.querySelector('#overlay-tick');
 
       overlay.className = 'flex flex-col gap-2';
 
@@ -56,14 +56,7 @@
     });
 
   chrome.runtime.onMessage.addListener((msg) => {
-    if (msg.type === 'metrics-update' && overlayEl) {
-      const popSpan = overlayEl.querySelector('#overlay-pop');
-      const troopsSpan = overlayEl.querySelector('#overlay-troops');
-      const workersSpan = overlayEl.querySelector('#overlay-workers');
-      const capSpan = overlayEl.querySelector('#overlay-cap');
-      const goldSpan = overlayEl.querySelector('#overlay-gold');
-      const tilesSpan = overlayEl.querySelector('#overlay-tiles');
-      const tickSpan = overlayEl.querySelector('#overlay-tick');
+    if (msg.type === 'metrics-update' && overlay) {
       if (popSpan) { popSpan.textContent = msg.pop; }
       if (troopsSpan) { troopsSpan.textContent = msg.troops; }
       if (workersSpan) { workersSpan.textContent = msg.workers; }
