@@ -124,13 +124,12 @@ function sendAttackEvent(targetID, troops) {
 }
 
 chrome.runtime.onMessage.addListener((msg) => {
-  if (msg.type === 'retrieve-game') {
-    startRetrieval();
-  }
-});
-
-chrome.runtime.onMessage.addListener((msg) => {
-  if (msg.type === 'attack-free-land') {
-    sendAttackEvent(msg.targetID,msg.troops);
+  switch (msg.type) {
+    case 'retrieve-game':
+      startRetrieval();
+      break;
+    case 'attack-free-land':
+      sendAttackEvent(msg.targetID, msg.troops);
+      break;
   }
 });
